@@ -8,9 +8,9 @@ const CalendarWeek = () => {
   return (
     <Container>
       {DAY.map((day, i) => (
-        <DayContent key={i}>
+        <WeekContent key={i}>
           {day}
-        </DayContent>
+        </WeekContent>
       ))}
     </Container>
   );
@@ -23,7 +23,7 @@ const Container = styled.div`
   align-items: center;
   height: 50px;
 `
-const DayContent = styled.div`
+const WeekContent = styled.div`
   flex: 1;
   height: 100%;
   text-align: center;
