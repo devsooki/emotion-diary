@@ -1,16 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const CalendarDay = ({calendarMatrix, month}) => {
-
+const CalendarDay = ({calendarMatrix, date}) => {
+  console.log(date.getDate())
+  let todayDate = date.getDate()
   const createCell = (cell, idx) => {
-    return <CalendarCell key={idx}>{cell}</CalendarCell>;
+    if (cell === 0) {
+
+    return <CalendarCell key={idx} className='empty'></CalendarCell>
+    }
+    return (
+      <CalendarCell key={idx} className={cell === todayDate && 'today'}>
+        <span>{cell}</span>
+      </CalendarCell>
+    )
   };
 
   const creatRow = (row, idx) => {
     const tds = row.map(createCell);
 
-    return <CalendarRow className='a' key={idx}>{tds}</CalendarRow>;
+    return <CalendarRow key={idx}>{tds}</CalendarRow>;
   };
 
   return (
@@ -29,8 +38,29 @@ const DayContent = styled.div`
 `
 const CalendarRow = styled.div`
   display: flex;
+  border-bottom: 1px solid #ddd;
+
+  &:last-child {
+    border-bottom: none;
+  }
 `
 const CalendarCell = styled.div`
   flex: 1;
-  height: 50px;
+  padding: 10px;
+  height: 80px;
+  border-right: 1px solid #ddd;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &.empty {
+    background-color: #fcf2f6;
+  }
+  &.today span {
+    padding: 5px;
+    color: #fff;
+    border-radius: 50%;
+    background-color: #fc9fc4;
+  }
 `

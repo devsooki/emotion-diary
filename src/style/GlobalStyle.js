@@ -5,6 +5,7 @@ export default createGlobalStyle`
     font-family: 'Nanum Gothic', sans-serif;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
   body {
     background-color: #fce4ea;
