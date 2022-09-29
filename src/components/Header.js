@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Header = () => {
   return (
     <Container>
-      <h1>감정일기</h1>
+      <h1>Emotion Diary</h1>
     </Container>
   );
 };
@@ -21,6 +21,6 @@ const Container = styled.header`
   h1 {
     color: #333;
     font-size: 40px;
-    font-family: 'Nanum Brush Script', cursive;
+    font-family: 'Fira Sans', sans-serif;
   }
 `
