@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const CalendarDay = ({calendarMatrix, date}) => {
-  console.log(date.getDate())
+const CalendarDay = ({calendarMatrix, date, isCurrentMonth}) => {
   let todayDate = date.getDate()
+  
   const createCell = (cell, idx) => {
     if (cell === 0) {
-
-    return <CalendarCell key={idx} className='empty'></CalendarCell>
+      return <CalendarCell key={idx} className='empty'></CalendarCell>
     }
     return (
-      <CalendarCell key={idx} className={cell === todayDate && 'today'}>
+      <CalendarCell key={idx} className={isCurrentMonth && cell === todayDate && 'today'}>
         <span>{cell}</span>
       </CalendarCell>
     )

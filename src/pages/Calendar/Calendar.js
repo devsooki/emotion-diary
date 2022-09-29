@@ -7,6 +7,7 @@ import MonthSelector from './MonthSelector';
 
 const Calendar = () => {
   const [date, setDate] = useState(new Date());
+  const [isCurrentMonth, setIsCurrentMonth] = useState(true)
   const firstDay = getFirstDate(date).getDay();
   const lastDate = getLastDate(date).getDate();
 
@@ -28,18 +29,19 @@ const Calendar = () => {
       rowIdx++ 
     }
   }
-
   return (
     <Container>
       <MonthSelector 
         date={date}
         setDate={setDate}
+        setIsCurrentMonth={setIsCurrentMonth}
       />
       <Content>
         <CalendarWeek />
         <CalendarDay 
           calendarMatrix={calendarMatrix} 
           date={date}
+          isCurrentMonth={isCurrentMonth}
         />
       </Content>
     </Container>

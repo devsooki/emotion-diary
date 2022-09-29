@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { getNextMonth, getPrevMonth } from '../../utils/date';
 
 
-const DateSelector = ({date, setDate}) => {
+const DateSelector = ({date, setDate, setIsCurrentMonth}) => {
   
   const dateFormat = () => {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
 
     return `${year}년 ${month}월`;
-  };
+  }
 
-  const onClickPrevMonth = () => setDate(getPrevMonth(date))
-  const onClickNextMonth = () => setDate(getNextMonth(date))
+  const onClickPrevMonth = () => {
+    setDate(getPrevMonth(date))
+  }
+
+  const onClickNextMonth = () => {
+    setDate(getNextMonth(date))
+  }
+
+  useEffect(() => {
+    if (date.getMonth() !== new Date().getMonth()) {
+      setIsCurrentMonth(false)
+    } else {
+      setIsCurrentMonth(true)
+    }
+  }, [date])
 
   return (
     <Container>
