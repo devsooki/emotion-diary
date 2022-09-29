@@ -8,12 +8,11 @@ import MonthSelector from './MonthSelector';
 const Calendar = () => {
   const [date, setDate] = useState(new Date());
 
-  const calendarMatrix = Array.from(Array(6), () => new Array(7));
+  const calendarMatrix = Array.from(Array(6), () => new Array(7).fill(0));
 
   //const calendarMatrix = Array.from(Array(6), () => Array(7).fill(0));
   const firstDay = getFirstDate(date).getDay();
   const lastDate = getLastDate(date).getDate();
-
 
   let colIdx = firstDay;
   let rowIdx = 0;
@@ -38,7 +37,7 @@ const Calendar = () => {
       <CalendarWeek />
       <CalendarDay 
         calendarMatrix={calendarMatrix} 
-        month={date}
+        date={date}
       />
     </Container>
   );
