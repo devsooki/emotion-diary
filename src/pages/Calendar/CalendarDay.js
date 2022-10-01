@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import CalendarDate from './CalendarDate';
 
 const CalendarDay = ({calendarMatrix, date, isCurrentMonth}) => {
   let todayDate = date.getDate()
@@ -9,9 +10,12 @@ const CalendarDay = ({calendarMatrix, date, isCurrentMonth}) => {
       return <CalendarCell key={idx} className='empty'></CalendarCell>
     }
     return (
-      <CalendarCell key={idx} className={isCurrentMonth && cell === todayDate && 'today'}>
-        <span>{cell}</span>
-      </CalendarCell>
+      <CalendarDate
+        key={idx}
+        cell={cell}
+        todayDate={todayDate}
+        isCurrentMonth={isCurrentMonth}
+      />
     )
   };
 
@@ -23,7 +27,6 @@ const CalendarDay = ({calendarMatrix, date, isCurrentMonth}) => {
 
   return (
     <DayContent>
-
       {calendarMatrix.map(creatRow)}
     </DayContent>
   );
