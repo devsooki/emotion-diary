@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const CalendarDate = ({todayDate, cell, isCurrentMonth}) => {
 
-  const EMOTION_ARRAY = ['😁', '😭']
+  const EMOTION_ARRAY = ['😁', '😭', '🥰', '😡', '😷']
   const [isEmotionModal, setIsEmotionModal] = useState(false)
 
   const onClickCalendarDate = () => {
@@ -24,7 +24,7 @@ const CalendarDate = ({todayDate, cell, isCurrentMonth}) => {
         {
           isEmotionModal && (
             <EmotionModal
-            emotionArray={EMOTION_ARRAY}
+              emotionArray={EMOTION_ARRAY}
             />
           )
         }
@@ -45,7 +45,6 @@ const CalendarCell = styled.div`
     border-right: none;
   }
   &:hover {
-    cursor: pointer;
     background-color: #ffe0ed;
   }
 
