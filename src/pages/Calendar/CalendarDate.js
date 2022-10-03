@@ -1,34 +1,35 @@
-import EmotionModal from 'components/EmotionModal';
+import DiaryModal from 'components/DiaryModal';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const CalendarDate = ({todayDate, cell, isCurrentMonth}) => {
 
-  const EMOTION_ARRAY = ['😁', '😭', '🥰', '😡', '😷']
-  const [isEmotionModal, setIsEmotionModal] = useState(false)
+  const [isDiaryModal, setIsDiaryModal] = useState(false);
 
   const onClickCalendarDate = () => {
-    setIsEmotionModal(!isEmotionModal)
+    setIsDiaryModal(!isDiaryModal)
   }
 
   if (cell === 0) {
     return <CalendarCell className='empty'></CalendarCell>
   }
   return (
-    <CalendarCell 
+    <>
+      <CalendarCell 
         onClick={onClickCalendarDate}
         className={isCurrentMonth && cell === todayDate && 'today'}
       >
         <span>{cell}</span>
-
-        {
-          isEmotionModal && (
-            <EmotionModal
-              emotionArray={EMOTION_ARRAY}
-            />
-          )
-        }
       </CalendarCell>
+
+      {
+        isDiaryModal && (
+          <DiaryModal
+            onClickCalendarDate={onClickCalendarDate}
+          />
+        )
+      }
+    </>
   )
 };
 
@@ -45,6 +46,7 @@ const CalendarCell = styled.div`
     border-right: none;
   }
   &:hover {
+    cursor: pointer;
     background-color: #ffe0ed;
   }
 

@@ -13,7 +13,7 @@ export default createGlobalStyle`
   ul,li {
     list-style: none;
   }
-  input {
+  input, textarea {
     outline: none;
   }
   button {
