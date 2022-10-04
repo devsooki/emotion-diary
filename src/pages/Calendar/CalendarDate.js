@@ -2,7 +2,14 @@ import DiaryModal from 'components/DiaryModal';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const CalendarDate = ({todayDate, cell, isCurrentMonth}) => {
+const CalendarDate = ({...props}) => {
+
+  const {
+    todayDate, 
+    cell, 
+    date, 
+    isCurrentMonth
+  } = props
 
   const [isDiaryModal, setIsDiaryModal] = useState(false);
 
@@ -25,6 +32,7 @@ const CalendarDate = ({todayDate, cell, isCurrentMonth}) => {
       {
         isDiaryModal && (
           <DiaryModal
+            date={date}
             onClickCalendarDate={onClickCalendarDate}
           />
         )

@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const DiaryModal = ({ onClickCalendarDate }) => {
+const DiaryModal = ({ date, onClickCalendarDate }) => {
+  const [diary, setDiary] = useState('')
+  const onChangeDiary = e => {
+    const {
+      target: { value }
+    } = e
+    
+    setDiary(value)
+  }
+  const onClickButton = () => {
+    localStorage.setItem('emotionDiary', JSON.stringify({date: date, diary: diary}))
+  }
   return (
     <Container>
       <ModalContainer>
@@ -17,8 +28,10 @@ const DiaryModal = ({ onClickCalendarDate }) => {
         </Header>
         <Content>
           <TextArea
-
+            value={diary}
+            onChange={onChangeDiary}
           />
+          <Button onClick={onClickButton}>등록</Button>
         </Content>
       </ModalContainer>
     </Container>
@@ -68,13 +81,22 @@ const Header = styled.header`
 `
 const Content = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 30px 20px;
 `
 const TextArea = styled.textarea`
+  flex: 1;
   padding: 20px;
   width: 100%;
-  height: 100%;
   border: 1px solid #eee;
-  border-radius: 10px;
+  //border-radius: 10px;
   resize: none;
+`
+const Button = styled.button`
+  margin-top: 20px;
+  height: 40px;
+  color: #fff;
+  background-color: #fc9fc4;
+  //border-radius: 10px;
 `

@@ -13,6 +13,7 @@ const CalendarDay = ({calendarMatrix, date, isCurrentMonth}) => {
       <CalendarDate
         key={idx}
         cell={cell}
+        date={date}
         todayDate={todayDate}
         isCurrentMonth={isCurrentMonth}
       />
