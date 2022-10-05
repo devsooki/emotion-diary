@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const DiaryModal = ({ date, onClickCalendarDate }) => {
+  const EMOTION_ARRAY = ['😀', '😭', '🥰' , '🤬', '😴']
   const [diary, setDiary] = useState('')
+  const [emotion, setEmotion] = useState('')
+
+  const onClickEmotion = emotion => {
+    setEmotion(emotion)
+  }
   const onChangeDiary = e => {
     const {
       target: { value }
@@ -11,8 +17,10 @@ const DiaryModal = ({ date, onClickCalendarDate }) => {
     setDiary(value)
   }
   const onClickButton = () => {
-    localStorage.setItem('emotionDiary', JSON.stringify({date: date, diary: diary}))
+    localStorage.setItem('emotionDiary', JSON.stringify({date: date, emotion: emotion, diary: diary}))
   }
+
+  console.log(emotion)
   return (
     <Container>
       <ModalContainer>
@@ -27,6 +35,20 @@ const DiaryModal = ({ date, onClickCalendarDate }) => {
           </button>
         </Header>
         <Content>
+          <EmotionContainer>
+            {
+              EMOTION_ARRAY.map((emotion, idx) => {
+                return (
+                  <Emotion 
+                    key={idx}
+                    onClick={() => onClickEmotion(emotion)}
+                  >
+                    {emotion}
+                  </Emotion>
+                )
+              })
+            }
+          </EmotionContainer>
           <TextArea
             value={diary}
             onChange={onChangeDiary}
@@ -84,6 +106,14 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   padding: 30px 20px;
+`
+const EmotionContainer = styled.div`
+  margin-bottom: 20px;
+  display: flex;
+`
+const Emotion = styled.div`
+  margin-right: 10px;
+  cursor: pointer;
 `
 const TextArea = styled.textarea`
   flex: 1;
