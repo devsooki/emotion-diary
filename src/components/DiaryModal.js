@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { createDateKey } from 'utils/date';
 
@@ -29,7 +29,7 @@ const DiaryModal = ({ date, cell, onClickCalendarDate }) => {
       <ModalContainer>
         <Header>
           <h1>
-            오늘 감사한 일은?
+            오늘({createDateKey(date, cell)}) 감사한 일은?
           </h1>
           <button
             onClick={onClickCalendarDate}
@@ -40,13 +40,14 @@ const DiaryModal = ({ date, cell, onClickCalendarDate }) => {
         <Content>
           <EmotionContainer>
             {
-              EMOTION_ARRAY.map((emotion, idx) => {
+              EMOTION_ARRAY.map((item, idx) => {
                 return (
                   <Emotion 
                     key={idx}
-                    onClick={() => onClickEmotion(emotion)}
+                    onClick={() => onClickEmotion(item)}
+                    className={item === emotion && 'active'} 
                   >
-                    {emotion}
+                    {item}
                   </Emotion>
                 )
               })
@@ -111,12 +112,19 @@ const Content = styled.div`
   padding: 30px 20px;
 `
 const EmotionContainer = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
+  align-items: center;
 `
 const Emotion = styled.div`
   margin-right: 10px;
   cursor: pointer;
+
+  font-size: 15px;
+
+  &.active {
+    font-size: 20px;
+  }
 `
 const TextArea = styled.textarea`
   flex: 1;

@@ -33,10 +33,9 @@ export const getLastDate = date => {
 }
 
 export const createDateKey = (date, cell) => {
-  console.log(cell)
   return (
     String(date.getFullYear()) +
     String(date.getMonth() + 1) +
-    String(cell)
+    String(cell > 10 ? `0${cell}` : cell)
   );
 };
