@@ -1,9 +1,11 @@
 import DiaryModal from 'components/DiaryModal';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { createDateKey } from 'utils/date';
+import { loadLocalStorage } from 'utils/localstorage';
 
 const CalendarDate = ({...props}) => {
-
+  const cellEl = useRef();
   const {
     todayDate, 
     cell, 
@@ -11,7 +13,16 @@ const CalendarDate = ({...props}) => {
     isCurrentMonth
   } = props
 
-  const [isDiaryModal, setIsDiaryModal] = useState(false);
+  const [isDiary, setIsDiary] = useState(false)
+  const [isDiaryModal, setIsDiaryModal] = useState(false)
+
+  useEffect(() => {
+    let data = loadLocalStorage('emotionDiary')[createDateKey(date, cell)]
+    if ( data !== undefined) {
+      setIsDiary(true)
+    }
+  }, [])
+
 
   const onClickCalendarDate = () => {
     setIsDiaryModal(!isDiaryModal)
@@ -24,9 +35,14 @@ const CalendarDate = ({...props}) => {
     <>
       <CalendarCell 
         onClick={onClickCalendarDate}
-        className={isCurrentMonth && cell === todayDate && 'today'}
+        ref={cellEl}
       >
-        <span>{cell}</span>
+        <Cell
+          className={isCurrentMonth && cell === todayDate && 'today'}
+        >
+          {cell}
+        </Cell>
+        {isDiary && <DiaryData>📝</DiaryData>}
       </CalendarCell>
 
       {
@@ -34,6 +50,8 @@ const CalendarDate = ({...props}) => {
           <DiaryModal
             date={date}
             cell={cell}
+            isDiaryModal={isDiaryModal}
+            setIsDiaryModal={setIsDiaryModal}
             onClickCalendarDate={onClickCalendarDate}
           />
         )
@@ -45,8 +63,10 @@ const CalendarDate = ({...props}) => {
 export default CalendarDate;
 
 const CalendarCell = styled.div`
-  position: relative;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
   padding: 10px;
   height: 80px;
   border-right: 1px solid #ddd;
@@ -71,4 +91,24 @@ const CalendarCell = styled.div`
     border-radius: 50%;
     background-color: #fc9fc4;
   }
+`
+const Cell = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+
+  &.today {
+    color: #fff;
+    border-radius: 50%;
+    background-color: #fc9fc4;
+  }
+`
+const DiaryData = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 `
