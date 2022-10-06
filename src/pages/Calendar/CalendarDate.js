@@ -33,6 +33,7 @@ const CalendarDate = ({...props}) => {
         isDiaryModal && (
           <DiaryModal
             date={date}
+            cell={cell}
             onClickCalendarDate={onClickCalendarDate}
           />
         )

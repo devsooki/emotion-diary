@@ -33,7 +33,7 @@ const DateSelector = ({date, setDate, setIsCurrentMonth}) => {
       <button onClick={onClickPrevMonth}>
         ◀
       </button>
-      <b>{dateFormat(date)}</b>
+      <b>{dateFormat()}</b>
       <button onClick={onClickNextMonth}>
         ▶︎
       </button>

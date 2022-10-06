@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { createDateKey } from 'utils/date';
 
-const DiaryModal = ({ date, onClickCalendarDate }) => {
+const DiaryModal = ({ date, cell, onClickCalendarDate }) => {
   const EMOTION_ARRAY = ['😀', '😭', '🥰' , '🤬', '😴']
   const [diary, setDiary] = useState('')
   const [emotion, setEmotion] = useState('')
@@ -17,10 +18,12 @@ const DiaryModal = ({ date, onClickCalendarDate }) => {
     setDiary(value)
   }
   const onClickButton = () => {
-    localStorage.setItem('emotionDiary', JSON.stringify({date: date, emotion: emotion, diary: diary}))
+    const prevEmotionDiary = JSON.parse(localStorage.getItem('emotionDiary'));
+    const newEmotionDiary = { ...prevEmotionDiary, [createDateKey(date, cell)]: {emotion: emotion, diary: diary} };
+
+    localStorage.setItem('emotionDiary', JSON.stringify(newEmotionDiary))
   }
 
-  console.log(emotion)
   return (
     <Container>
       <ModalContainer>

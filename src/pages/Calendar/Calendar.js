@@ -29,6 +29,8 @@ const Calendar = () => {
       rowIdx++ 
     }
   }
+
+  console.log('dd',date)
   return (
     <Container>
       <MonthSelector 
