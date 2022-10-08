@@ -30,7 +30,7 @@ const CalendarDate = ({...props}) => {
         setIsDiary(true)
       }
     }
-  }, [])
+  }, [loadLocalStorage('emotionDiary')])
 
 
   const onClickCalendarDate = () => {
