@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { getFirstDate, getLastDate } from '../../utils/date';
+
+// components
 import CalendarDay from './CalendarDay';
 import CalendarWeek from './CalendarWeek';
 import MonthSelector from './MonthSelector';
+
+// utils
+import { getFirstDate, getLastDate } from '../../utils/date';
+
+// style
+import styled from 'styled-components';
 
 const Calendar = () => {
   const [date, setDate] = useState(new Date());

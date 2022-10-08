@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+
+// utils
 import { createDateKey } from 'utils/date';
 import { loadLocalStorage, saveLocalStorage } from 'utils/localstorage';
+
+// style
+import styled from 'styled-components';
 
 const DiaryModal = ({ date, cell, onClickCalendarDate }) => {
   const modalEl = useRef();

@@ -1,6 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+
+// components
 import CalendarDate from './CalendarDate';
+
+// style
+import styled from 'styled-components';
 
 const CalendarDay = ({calendarMatrix, date, isCurrentMonth}) => {
   let todayDate = date.getDate()

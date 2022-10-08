@@ -1,8 +1,14 @@
-import DiaryModal from 'components/DiaryModal';
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+
+// components
+import DiaryModal from 'components/DiaryModal';
+
+// utils
 import { createDateKey } from 'utils/date';
 import { loadLocalStorage } from 'utils/localstorage';
+
+// styke
+import styled from 'styled-components';
 
 const CalendarDate = ({...props}) => {
   const cellEl = useRef();

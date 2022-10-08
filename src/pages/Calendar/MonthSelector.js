@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+
+// utils
 import { getNextMonth, getPrevMonth } from '../../utils/date';
 
+// style
+import styled from 'styled-components';
 
 const DateSelector = ({date, setDate, setIsCurrentMonth}) => {
   
