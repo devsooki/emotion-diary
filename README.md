@@ -4,4 +4,4 @@
 
 ## Demo
 
-[Emotion Diary](https://devsooki.github.io/emotion-diary
+[Emotion Diary](https://devsooki.github.io/emotion-diary)
