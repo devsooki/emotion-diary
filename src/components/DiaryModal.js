@@ -14,7 +14,10 @@ const DiaryModal = ({ date, cell, onClickCalendarDate }) => {
   const [emotion, setEmotion] = useState('')
 
   useEffect(() => {
+    if (loadLocalStorage('emotionDiary') === null) return
+
     let data = loadLocalStorage('emotionDiary')[createDateKey(date, cell)]
+    
     if ( data !== undefined) {
       setDiary(data.diary)
       setEmotion(data.emotion)

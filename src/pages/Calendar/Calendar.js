@@ -36,7 +36,6 @@ const Calendar = () => {
     }
   }
 
-  console.log('dd',date)
   return (
     <Container>
       <MonthSelector 

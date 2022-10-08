@@ -5,7 +5,7 @@ export const saveLocalStorage = (keyName, value) => {
 export const loadLocalStorage = (keyName) => {
   const data = localStorage.getItem(keyName);
 
-  if (!data) {
+  if (!data || data === null) {
     return null;
   }
 

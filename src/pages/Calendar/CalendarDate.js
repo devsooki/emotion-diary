@@ -23,8 +23,10 @@ const CalendarDate = ({...props}) => {
   const [isDiaryModal, setIsDiaryModal] = useState(false)
 
   useEffect(() => {
+    if (loadLocalStorage('emotionDiary') === null) return
+
     let data = loadLocalStorage('emotionDiary')[createDateKey(date, cell)]
-    if (data === null) return
+    
     if (data !== undefined) {
       setIsDiary(true)
     }
