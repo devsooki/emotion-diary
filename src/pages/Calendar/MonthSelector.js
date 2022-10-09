@@ -38,7 +38,7 @@ const DateSelector = ({date, setDate, setIsCurrentMonth}) => {
       </button>
       <b>{dateFormat()}</b>
       <button onClick={onClickNextMonth}>
-        ▶︎
+        ▶
       </button>
     </Container>
   );
