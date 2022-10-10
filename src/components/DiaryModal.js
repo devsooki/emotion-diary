@@ -7,11 +7,25 @@ import { loadLocalStorage, saveLocalStorage } from 'utils/localstorage';
 // style
 import styled from 'styled-components';
 
-const DiaryModal = ({ date, cell, onClickCalendarDate }) => {
-  const modalEl = useRef();
+const DiaryModal = ({ date, cell, isDiaryModal, onClickCalendarDate }) => {
+  const node = useRef();
   const EMOTION_ARRAY = ['😀', '😭', '🥰' , '🤬', '😴']
   const [diary, setDiary] = useState('')
   const [emotion, setEmotion] = useState('')
+
+  useEffect(() => {
+    const clickOutside = (e) => {
+      if (isDiaryModal && node.current && !node.current.contains(e.target)) {
+        onClickCalendarDate();
+      }
+    };
+
+    document.addEventListener("mousedown", clickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", clickOutside);
+    };
+  }, [isDiaryModal]);
 
   useEffect(() => {
     if (loadLocalStorage('emotionDiary') !== null) {
@@ -43,8 +57,8 @@ const DiaryModal = ({ date, cell, onClickCalendarDate }) => {
   }
 
   return (
-    <Container ref={modalEl}>
-      <ModalContainer>
+    <Container>
+      <ModalContainer ref={node}>
         <Header>
           <h1>
             오늘({createDateKey(date, cell)}) 감사한 일은?
