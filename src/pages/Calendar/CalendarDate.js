@@ -11,7 +11,6 @@ import { loadLocalStorage } from 'utils/localstorage';
 import styled from 'styled-components';
 
 const CalendarDate = ({...props}) => {
-  const cellEl = useRef();
   const {
     todayDate, 
     cell, 
@@ -20,14 +19,17 @@ const CalendarDate = ({...props}) => {
   } = props
 
   const [isDiary, setIsDiary] = useState(false)
+  const [diaryDate, setDiaryDate] = useState(null)
   const [isDiaryModal, setIsDiaryModal] = useState(false)
 
   useEffect(() => {
     if (loadLocalStorage('emotionDiary') !== null) {
       let data = loadLocalStorage('emotionDiary')[createDateKey(date, cell)]
 
+
       if (data !== undefined) {
         setIsDiary(true)
+        setDiaryDate(data.date)
       }
     }
   }, [loadLocalStorage('emotionDiary')])
@@ -44,14 +46,13 @@ const CalendarDate = ({...props}) => {
     <>
       <CalendarCell 
         onClick={onClickCalendarDate}
-        ref={cellEl}
       >
         <Cell
           className={isCurrentMonth && cell === todayDate && 'today'}
         >
           {cell}
         </Cell>
-        {isDiary && <DiaryData>📝</DiaryData>}
+        {diaryDate === createDateKey(date, cell) && isDiary && <DiaryData>📝</DiaryData>}
       </CalendarCell>
 
       {
@@ -90,15 +91,6 @@ const CalendarCell = styled.div`
 
   &.empty {
     background-color: #fcf2f6;
-  }
-  &.today span {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    color: #fff;
-    text-align: center;
-    border-radius: 50%;
-    background-color: #fc9fc4;
   }
 `
 const Cell = styled.div`

@@ -28,7 +28,6 @@ export const getLastDate = date => {
   const year = date.getFullYear();
   const month = date.getMonth();
 
-  // TODO: 블로그 정리(다음달의 0일은 없으니까, 그 전달의 마지막 날짜가 됨)
   return new Date(year, month+1, 0);
 }
 
@@ -36,6 +35,6 @@ export const createDateKey = (date, cell) => {
   return (
     String(date.getFullYear()) +
     String(date.getMonth() + 1) +
-    String(cell > 10 ? `0${cell}` : cell)
+    String(cell < 10 ? `0${cell}` : cell)
   );
 };

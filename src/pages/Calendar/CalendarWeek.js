@@ -36,7 +36,7 @@ const WeekContent = styled.div`
   &:nth-child(1) {
     color: #cc0000;
   }
-  &:nth-child(6) {
+  &:nth-child(7) {
     color: #1070ba;
   }
   &:last-child {

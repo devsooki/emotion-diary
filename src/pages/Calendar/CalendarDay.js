@@ -7,6 +7,7 @@ import CalendarDate from './CalendarDate';
 import styled from 'styled-components';
 
 const CalendarDay = ({calendarMatrix, date, isCurrentMonth}) => {
+
   let todayDate = date.getDate()
   
   const createCell = (cell, idx) => {

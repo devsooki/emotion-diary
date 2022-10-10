@@ -36,7 +36,7 @@ const DiaryModal = ({ date, cell, onClickCalendarDate }) => {
   }
   const onClickButton = () => {
     const prevEmotionDiary = loadLocalStorage('emotionDiary');
-    const newEmotionDiary = { ...prevEmotionDiary, [createDateKey(date, cell)]: {emotion: emotion, diary: diary} };
+    const newEmotionDiary = { ...prevEmotionDiary, [createDateKey(date, cell)]: {date: createDateKey(date, cell), emotion: emotion, diary: diary} };
 
     saveLocalStorage('emotionDiary', newEmotionDiary)
     onClickCalendarDate()
